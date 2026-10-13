@@ -1,0 +1,370 @@
+{
+  "npcs": [
+    {
+      "id": "maya",
+      "name": "Maya Okafor",
+      "role": "Senior SDE · your mentor",
+      "initials": "MO",
+      "color": "#0d9488"
+    },
+    {
+      "id": "rohan",
+      "name": "Rohan Mehta",
+      "role": "Engineering Manager",
+      "initials": "RM",
+      "color": "#7c3aed"
+    },
+    {
+      "id": "priya",
+      "name": "Priya Nair",
+      "role": "SDE II",
+      "initials": "PN",
+      "color": "#db2777"
+    },
+    {
+      "id": "dev",
+      "name": "Dev Castillo",
+      "role": "SDE I",
+      "initials": "DC",
+      "color": "#ea580c"
+    },
+    {
+      "id": "sam",
+      "name": "Sam Whitlock",
+      "role": "Product Manager",
+      "initials": "SW",
+      "color": "#2563eb"
+    },
+    {
+      "id": "crbot",
+      "name": "Review Bot",
+      "role": "bot",
+      "initials": "CR",
+      "color": "#475569",
+      "bot": true
+    },
+    {
+      "id": "pipebot",
+      "name": "Pipeline",
+      "role": "bot",
+      "initials": "PL",
+      "color": "#475569",
+      "bot": true
+    }
+  ],
+  "channels": [
+    {
+      "id": "team",
+      "name": "queue-team",
+      "kind": "channel",
+      "topic": "Queue Service team. Be kind, be brief."
+    },
+    {
+      "id": "deploys",
+      "name": "queue-deploys",
+      "kind": "channel",
+      "topic": "Automatic pipeline updates."
+    },
+    {
+      "id": "dm-maya",
+      "name": "Maya Okafor",
+      "kind": "dm"
+    },
+    {
+      "id": "dm-rohan",
+      "name": "Rohan Mehta",
+      "kind": "dm"
+    },
+    {
+      "id": "dm-priya",
+      "name": "Priya Nair",
+      "kind": "dm"
+    },
+    {
+      "id": "dm-dev",
+      "name": "Dev Castillo",
+      "kind": "dm"
+    }
+  ],
+  "missions": [
+    {
+      "id": "meet",
+      "day": 1,
+      "title": "Meet your team",
+      "due": "09:30",
+      "steps": [
+        {
+          "id": "chat:hello",
+          "text": "Open Chirp and reply to Maya.",
+          "app": "chat"
+        }
+      ]
+    },
+    {
+      "id": "first-change",
+      "day": 1,
+      "title": "Ship your first change (QS-101)",
+      "due": "13:00",
+      "steps": [
+        {
+          "id": "ticket:start:QS-101",
+          "text": "Open Tickets, read QS-101 and press Start work.",
+          "app": "tickets"
+        },
+        {
+          "id": "git:branch",
+          "text": "Open Workspace and create a branch for your ticket.",
+          "app": "git"
+        },
+        {
+          "id": "git:work",
+          "text": "Fix the typo: keep the Workspace window in front until the fix is written.",
+          "app": "git"
+        },
+        {
+          "id": "git:add",
+          "text": "Stage your change with git add.",
+          "app": "git"
+        },
+        {
+          "id": "git:commit",
+          "text": "Commit it with a clear message.",
+          "app": "git"
+        },
+        {
+          "id": "git:push",
+          "text": "Push your branch to the remote.",
+          "app": "git"
+        },
+        {
+          "id": "git:cr",
+          "text": "Open a CR so a teammate can review it.",
+          "app": "git"
+        },
+        {
+          "id": "git:live",
+          "text": "Maya is reviewing your CR. After that it travels to production by itself. Watch it in Pipeline.",
+          "app": "pipeline"
+        },
+        {
+          "id": "ticket:resolve:QS-101",
+          "text": "Your fix is live. Open Tickets and resolve QS-101.",
+          "app": "tickets"
+        }
+      ]
+    },
+    {
+      "id": "wrap-1",
+      "day": 1,
+      "title": "Go home",
+      "steps": [
+        {
+          "id": "leave:1",
+          "text": "Everything for today is done. Stand up and take the elevator home."
+        }
+      ]
+    },
+    {
+      "id": "d2-brief",
+      "day": 2,
+      "title": "Morning check-in",
+      "due": "09:30",
+      "steps": [
+        {
+          "id": "chat:d2",
+          "text": "Open Chirp and reply to Maya.",
+          "app": "chat"
+        }
+      ]
+    },
+    {
+      "id": "d2-reviews",
+      "day": 2,
+      "title": "Your first code reviews",
+      "due": "13:00",
+      "steps": [
+        {
+          "id": "review:cr-201",
+          "text": "Review Dev's CR in Code Review. No code-reading needed for this one.",
+          "app": "review"
+        },
+        {
+          "id": "review:cr-202",
+          "text": "Review Priya's CR: batch helper.",
+          "app": "review"
+        }
+      ]
+    },
+    {
+      "id": "wrap-2",
+      "day": 2,
+      "title": "Go home",
+      "steps": [
+        {
+          "id": "leave:2",
+          "text": "Everything for today is done. Stand up and take the elevator home."
+        }
+      ]
+    },
+    {
+      "id": "d3-brief",
+      "day": 3,
+      "title": "Morning check-in",
+      "due": "09:30",
+      "steps": [
+        {
+          "id": "chat:d3",
+          "text": "Open Chirp and reply to Maya.",
+          "app": "chat"
+        }
+      ]
+    },
+    {
+      "id": "d3-reviews",
+      "day": 3,
+      "title": "Review queue",
+      "due": "15:00",
+      "steps": [
+        {
+          "id": "review:cr-203",
+          "text": "Review Priya's CR: price lookup.",
+          "app": "review"
+        },
+        {
+          "id": "review:cr-204",
+          "text": "Review Dev's CR: paging helper.",
+          "app": "review"
+        },
+        {
+          "id": "review:cr-205",
+          "text": "Review Priya's CR: delivery retries.",
+          "app": "review"
+        }
+      ]
+    },
+    {
+      "id": "wrap-3",
+      "day": 3,
+      "title": "Go home",
+      "steps": [
+        {
+          "id": "leave:3",
+          "text": "Everything for today is done. Stand up and take the elevator home."
+        }
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "id": "ticket",
+      "term": "Ticket",
+      "def": "A written record of one piece of work: what is wrong or wanted, who asked, who is doing it, and what happened."
+    },
+    {
+      "id": "backlog",
+      "term": "Backlog",
+      "def": "The list of everything the team could work on but has not started. It is always longer than the team can finish."
+    },
+    {
+      "id": "sprint",
+      "term": "Sprint",
+      "def": "A short, fixed stretch of work, usually two weeks, with a goal the team agrees on at the start."
+    },
+    {
+      "id": "standup",
+      "term": "Standup",
+      "def": "A short daily check-in: what you did, what you will do, and what is blocking you. Often written in chat instead of spoken."
+    },
+    {
+      "id": "main",
+      "term": "main",
+      "def": "The shared branch that gets deployed to customers. You never commit to it directly."
+    },
+    {
+      "id": "branch",
+      "term": "Branch",
+      "def": "Your own line of work, split off from main, where unfinished changes cannot affect anyone else."
+    },
+    {
+      "id": "commit",
+      "term": "Commit",
+      "def": "A saved snapshot of your changes, with a message explaining what changed and why."
+    },
+    {
+      "id": "cr",
+      "term": "CR (change request)",
+      "def": "A request to add your branch to main. A teammate must review and approve it first. Other companies call this a pull request (PR) or a diff."
+    },
+    {
+      "id": "pipeline",
+      "term": "Pipeline",
+      "def": "The automatic path a merged change takes to reach customers: build, test stages, then production."
+    },
+    {
+      "id": "one-box",
+      "term": "One-box",
+      "def": "A single production host that gets the new code first and serves a small share of real traffic, so problems show up while few customers are affected."
+    },
+    {
+      "id": "bake-time",
+      "term": "Bake time",
+      "def": "A deliberate wait at a pipeline stage while alarms are watched, to give slow problems time to appear."
+    },
+    {
+      "id": "rollback",
+      "term": "Rollback",
+      "def": "Undoing a deployment by returning to the previous version. A change is rollback-safe when undoing it breaks nothing."
+    },
+    {
+      "id": "flaky-test",
+      "term": "Flaky test",
+      "def": "A test that sometimes passes and sometimes fails without any code change. It trains people to ignore failures."
+    },
+    {
+      "id": "secret",
+      "term": "Secret",
+      "def": "A password, API key or token. Secrets live in a secrets manager, never in code, because code history keeps them forever."
+    },
+    {
+      "id": "timeout",
+      "term": "Timeout",
+      "def": "The longest your code will wait for another service before giving up. Without one, a slow dependency can freeze you too."
+    },
+    {
+      "id": "retry",
+      "term": "Retry with backoff",
+      "def": "Trying a failed call again, a limited number of times, waiting longer between each try so you do not overwhelm a struggling service."
+    },
+    {
+      "id": "pii",
+      "term": "PII",
+      "def": "Personally identifiable information: names, emails, addresses, message contents. It must not be written to logs."
+    },
+    {
+      "id": "off-by-one",
+      "term": "Off-by-one error",
+      "def": "A bug where a count or range is wrong by exactly one. Often hides at the first or last item."
+    },
+    {
+      "id": "nit",
+      "term": "Nit",
+      "def": "A small, optional review comment about style or naming. Worth mentioning, never worth blocking a change."
+    }
+  ],
+  "cards": [
+    {
+      "id": "first_change_live",
+      "kicker": "Milestone",
+      "title": "Your first change is live",
+      "body": [
+        "QS-101 is running in production. Every customer who hits that error now sees it spelled correctly.",
+        "It was one character. But you used the whole path that every change takes: branch, commit, review, pipeline, production."
+      ],
+      "realWorld": "At Amazon a change usually takes days, not minutes, to reach every region. It waits at each stage while alarms are watched, and it is rolled back automatically if they fire. Most deployments are never watched by a person. This game shortens the wait.",
+      "source": {
+        "label": "Amazon Builders' Library: Automating safe, hands-off deployments",
+        "url": "https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/"
+      }
+    }
+  ]
+}

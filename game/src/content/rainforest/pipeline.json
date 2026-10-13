@@ -1,0 +1,61 @@
+{
+  "name": "queue-service",
+  "npc": "pipebot",
+  "channel": "deploys",
+  "stages": [
+    {
+      "id": "build",
+      "name": "Build",
+      "plain": "Packages the code and runs the fast tests. Catches anything that is simply broken.",
+      "minutes": 2,
+      "message": "🔨 Build · {ticket} · unit tests passed (212/212)"
+    },
+    {
+      "id": "beta",
+      "name": "Beta",
+      "plain": "Runs the service in a test environment and checks that its parts still work together.",
+      "minutes": 4,
+      "message": "🧪 Beta · {ticket} · integration tests passed"
+    },
+    {
+      "id": "gamma",
+      "name": "Gamma",
+      "plain": "A copy of production with no real customers. The last rehearsal before the real thing.",
+      "minutes": 5,
+      "message": "🧪 Gamma · {ticket} · production-like checks passed"
+    },
+    {
+      "id": "one-box",
+      "name": "One-box",
+      "plain": "One real host gets the new code and serves a small share of customers, while alarms are watched.",
+      "minutes": 8,
+      "message": "📦 One-box · {ticket} · one host served 10% of traffic through its bake time. No alarms."
+    },
+    {
+      "id": "prod",
+      "name": "Prod",
+      "plain": "Every host gets the new code, a few at a time. All customers now run your change.",
+      "minutes": 5,
+      "message": "🚀 Prod · {ticket} · deployed to all hosts. No alarms."
+    }
+  ],
+  "onComplete": [
+    { "type": "step", "step": "git:live" },
+    { "type": "card", "id": "first_change_live" },
+    { "type": "glossary", "id": "one-box" },
+    { "type": "glossary", "id": "bake-time" },
+    { "type": "stat", "path": "hidden.credit", "delta": 2 }
+  ],
+  "history": [
+    { "ticket": "QS-94", "title": "Alarm when delivery takes longer than 5 seconds", "author": "maya", "when": "yesterday" },
+    {
+      "ticket": "QS-91",
+      "title": "Cache customer settings in the delivery worker",
+      "author": "dev",
+      "when": "3 days ago",
+      "rolledBackAt": "one-box",
+      "note": "The error-rate alarm fired after four minutes at One-box. The pipeline undid the change by itself; 10% of traffic was affected for four minutes instead of everyone for hours. Dev fixed it and shipped again the next day."
+    },
+    { "ticket": "QS-90", "title": "Record delivery receipts", "author": "priya", "when": "4 days ago" }
+  ]
+}

@@ -1,0 +1,691 @@
+[
+  {
+    "id": "welcome",
+    "day": 1,
+    "when": {
+      "type": "time",
+      "atLeast": "09:00"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "Hey {name}! I'm Maya. I'll be your mentor this week. Welcome to the Queue Service team 👋",
+        "afterMinutes": 1
+      },
+      {
+        "text": "Short version of what we do: other teams hand us messages, and we deliver them. Every one of them, even when things break.",
+        "afterMinutes": 3
+      },
+      {
+        "text": "How are you feeling about day one?",
+        "afterMinutes": 4
+      }
+    ],
+    "replies": [
+      {
+        "id": "excited",
+        "text": "Excited. What should I start with?",
+        "effects": [
+          {
+            "type": "stat",
+            "path": "trust.maya",
+            "delta": 2
+          },
+          {
+            "type": "step",
+            "step": "chat:hello"
+          },
+          {
+            "type": "event",
+            "id": "first_ticket",
+            "afterMinutes": 1
+          }
+        ],
+        "followUp": "Love it. I have just the thing."
+      },
+      {
+        "id": "nervous",
+        "text": "Honestly, a bit nervous. I have never shipped anything real before.",
+        "effects": [
+          {
+            "type": "stat",
+            "path": "trust.maya",
+            "delta": 3
+          },
+          {
+            "type": "stat",
+            "path": "stats.stress",
+            "delta": -4
+          },
+          {
+            "type": "step",
+            "step": "chat:hello"
+          },
+          {
+            "type": "event",
+            "id": "first_ticket",
+            "afterMinutes": 1
+          }
+        ],
+        "followUp": "That is the right amount of nervous. Nobody ships alone here: every change gets a second pair of eyes before it goes anywhere."
+      },
+      {
+        "id": "bold",
+        "text": "Ready. Point me at the hardest ticket you have.",
+        "effects": [
+          {
+            "type": "step",
+            "step": "chat:hello"
+          },
+          {
+            "type": "event",
+            "id": "first_ticket",
+            "afterMinutes": 1
+          }
+        ],
+        "followUp": "Ha. Let's start with a typo and work up from there."
+      }
+    ]
+  },
+  {
+    "id": "first_ticket",
+    "day": 1,
+    "when": {
+      "type": "manual"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "I assigned you QS-101. A customer noticed a typo in one of our error messages: \"Mesage not found\".",
+        "afterMinutes": 0
+      },
+      {
+        "text": "Tiny change, but it takes you through the whole path: ticket → branch → commit → CR → pipeline → production.",
+        "afterMinutes": 1
+      },
+      {
+        "text": "Start in Tickets: read QS-101 and press Start work, so the team can see it is yours. The Today panel on the right always shows your next step.",
+        "afterMinutes": 2
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "assign",
+        "ticket": "QS-101",
+        "to": "player",
+        "by": "maya"
+      },
+      {
+        "type": "glossary",
+        "id": "ticket"
+      },
+      {
+        "type": "glossary",
+        "id": "main"
+      },
+      {
+        "type": "glossary",
+        "id": "branch"
+      },
+      {
+        "type": "glossary",
+        "id": "commit"
+      },
+      {
+        "type": "glossary",
+        "id": "cr"
+      }
+    ]
+  },
+  {
+    "id": "rohan_welcome",
+    "day": 1,
+    "when": {
+      "type": "time",
+      "atLeast": "09:12"
+    },
+    "channel": "team",
+    "from": "rohan",
+    "messages": [
+      {
+        "text": "Everyone, {name} joins us today as our intern 🎉 Maya is mentoring. {name}: the Sprint 14 board in Tickets shows what each of us is working on. Maya has a starter ticket for you.",
+        "afterMinutes": 0
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "glossary",
+        "id": "sprint"
+      }
+    ]
+  },
+  {
+    "id": "banter_1",
+    "day": 1,
+    "when": {
+      "type": "time",
+      "atLeast": "09:40"
+    },
+    "channel": "team",
+    "from": "dev",
+    "messages": [
+      {
+        "text": "morning all ☕ who broke the beta stage last night",
+        "afterMinutes": 0
+      }
+    ]
+  },
+  {
+    "id": "banter_2",
+    "day": 1,
+    "when": {
+      "type": "time",
+      "atLeast": "09:44"
+    },
+    "channel": "team",
+    "from": "priya",
+    "messages": [
+      {
+        "text": "not me. it's the flaky integ test again, it fails every third run. just hit retry",
+        "afterMinutes": 0
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "glossary",
+        "id": "flaky-test"
+      }
+    ]
+  },
+  {
+    "id": "cr_approved",
+    "day": 1,
+    "when": {
+      "type": "flag",
+      "id": "cr_opened",
+      "is": true
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "Looked at your CR. Small, focused, easy to review. That is exactly what I want to see. Approved ✅",
+        "afterMinutes": 10
+      },
+      {
+        "text": "It merges now and the pipeline takes it from here. You do not need to do anything: open Pipeline and watch it go.",
+        "afterMinutes": 11
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "git",
+        "op": "merge"
+      },
+      {
+        "type": "flag",
+        "id": "cr_merged",
+        "value": true
+      },
+      {
+        "type": "stat",
+        "path": "trust.maya",
+        "delta": 2
+      },
+      {
+        "type": "stat",
+        "path": "hidden.value",
+        "delta": 3
+      },
+      {
+        "type": "glossary",
+        "id": "pipeline"
+      }
+    ]
+  },
+  {
+    "id": "commit_msg_nit",
+    "day": 1,
+    "when": {
+      "type": "all",
+      "of": [
+        {
+          "type": "flag",
+          "id": "cr_merged",
+          "is": true
+        },
+        {
+          "type": "flag",
+          "id": "good_commit_msg",
+          "is": false
+        }
+      ]
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "One small thing for next time: your commit message. Someday someone will read the history trying to work out why a line changed, and a one-word message will not help them. Say what changed and why.",
+        "afterMinutes": 2
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "glossary",
+        "id": "nit"
+      }
+    ]
+  },
+  {
+    "id": "day1_live",
+    "day": 1,
+    "when": {
+      "type": "stepDone",
+      "step": "git:live"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "And that is a change in production on your first day, {name}. Most people take a week.",
+        "afterMinutes": 1
+      },
+      {
+        "text": "One last thing: resolve QS-101 in Tickets. A finished ticket left open tells the team the work is still going.",
+        "afterMinutes": 2
+      }
+    ]
+  },
+  {
+    "id": "day1_end",
+    "day": 1,
+    "when": {
+      "type": "stepDone",
+      "step": "ticket:resolve:QS-101"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "Board is honest again. Go home, {name}: the elevator is past the ping-pong table. Tomorrow you get to do for someone else what I just did for you: review their code.",
+        "afterMinutes": 1
+      }
+    ]
+  },
+  {
+    "id": "d2_morning",
+    "day": 2,
+    "when": {
+      "type": "time",
+      "atLeast": "09:00"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "Morning {name}. Yesterday I reviewed your code. Today you return the favour for Dev and Priya.",
+        "afterMinutes": 1
+      },
+      {
+        "text": "Reviewing is not about being smarter than the author. You are a second pair of eyes asking four questions: is the logic right, is it tested, will we know if it breaks, can we undo it.",
+        "afterMinutes": 3
+      },
+      {
+        "text": "The first one needs no code-reading at all. Ready?",
+        "afterMinutes": 4
+      }
+    ],
+    "replies": [
+      {
+        "id": "ready",
+        "text": "Ready.",
+        "effects": [
+          {
+            "type": "flag",
+            "id": "d2_ready",
+            "value": true
+          },
+          {
+            "type": "step",
+            "step": "chat:d2"
+          },
+          {
+            "type": "stat",
+            "path": "trust.maya",
+            "delta": 1
+          }
+        ],
+        "followUp": "Sending it your way. Open Code Review."
+      },
+      {
+        "id": "worried",
+        "text": "What if I miss something?",
+        "effects": [
+          {
+            "type": "flag",
+            "id": "d2_ready",
+            "value": true
+          },
+          {
+            "type": "step",
+            "step": "chat:d2"
+          },
+          {
+            "type": "stat",
+            "path": "trust.maya",
+            "delta": 2
+          },
+          {
+            "type": "stat",
+            "path": "stats.stress",
+            "delta": -3
+          }
+        ],
+        "followUp": "Then I catch it. I read every CR behind you this week. If you miss something serious, I send it back and you look again. That is how you learn what to look for. Open Code Review when you are ready."
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "glossary",
+        "id": "rollback"
+      }
+    ]
+  },
+  {
+    "id": "d2_standup",
+    "day": 2,
+    "when": {
+      "type": "time",
+      "atLeast": "09:06"
+    },
+    "channel": "team",
+    "from": "rohan",
+    "messages": [
+      {
+        "text": "Async standup 🧵 one line each: yesterday, today, anything blocking you.",
+        "afterMinutes": 0
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "glossary",
+        "id": "standup"
+      }
+    ]
+  },
+  {
+    "id": "d2_standup_dev",
+    "day": 2,
+    "when": {
+      "type": "time",
+      "atLeast": "09:08"
+    },
+    "channel": "team",
+    "from": "dev",
+    "messages": [
+      {
+        "text": "yesterday: retry settings for the delivery worker (QS-96). today: CR goes up this morning. blockers: none",
+        "afterMinutes": 0
+      }
+    ]
+  },
+  {
+    "id": "d2_standup_priya",
+    "day": 2,
+    "when": {
+      "type": "time",
+      "atLeast": "09:10"
+    },
+    "channel": "team",
+    "from": "priya",
+    "messages": [
+      {
+        "text": "yesterday: batch helper cleanup (QS-99), CR coming. today: price lookup for receipts (QS-102). blockers: waiting on Billing for a test account",
+        "afterMinutes": 0
+      }
+    ],
+    "onDelivered": [
+      {
+        "type": "glossary",
+        "id": "backlog"
+      }
+    ]
+  },
+  {
+    "id": "manager_sec",
+    "day": 2,
+    "when": {
+      "type": "reviewed",
+      "puzzle": "cr-201"
+    },
+    "channel": "dm-rohan",
+    "from": "rohan",
+    "messages": [
+      {
+        "text": "got a sec?",
+        "afterMinutes": 2
+      },
+      {
+        "text": "Nothing scary. I do a 15-minute sync with new folks in their first week. Now, or after the review you are on?",
+        "afterMinutes": 6
+      }
+    ],
+    "replies": [
+      {
+        "id": "now",
+        "text": "Now works.",
+        "effects": [
+          {
+            "type": "time",
+            "minutes": 15
+          },
+          {
+            "type": "stat",
+            "path": "stats.flow",
+            "delta": -100
+          },
+          {
+            "type": "stat",
+            "path": "trust.rohan",
+            "delta": 3
+          },
+          {
+            "type": "stat",
+            "path": "hidden.credit",
+            "delta": 1
+          }
+        ],
+        "followUp": "Good chat. The one thing to remember: bring me bad news early. Early, I can fix."
+      },
+      {
+        "id": "after",
+        "text": "After this review, if that's ok. I'm in the middle of reading it.",
+        "effects": [
+          {
+            "type": "stat",
+            "path": "trust.rohan",
+            "delta": 2
+          }
+        ],
+        "followUp": "Good. Finish your thought first. Come find me later."
+      }
+    ],
+    "expiresAfterMinutes": 120,
+    "onIgnored": [
+      {
+        "type": "stat",
+        "path": "trust.rohan",
+        "delta": -5
+      },
+      {
+        "type": "stat",
+        "path": "stats.stress",
+        "delta": 5
+      }
+    ]
+  },
+  {
+    "id": "day2_end",
+    "day": 2,
+    "when": {
+      "type": "reviewed",
+      "puzzle": "cr-202"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "Two reviews in. One had a real problem, one was clean. Telling those apart is the whole skill. Head home, and tomorrow we do ones where you read the code.",
+        "afterMinutes": 2
+      }
+    ]
+  },
+  {
+    "id": "d3_morning",
+    "day": 3,
+    "when": {
+      "type": "time",
+      "atLeast": "09:00"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "Three CRs in your queue today, and these need you to read the code.",
+        "afterMinutes": 1
+      },
+      {
+        "text": "Hover any line to get it in plain English, and ask me for hints. That is what they are for. Nobody reads code fluently in week one.",
+        "afterMinutes": 3
+      }
+    ],
+    "replies": [
+      {
+        "id": "go",
+        "text": "On it.",
+        "effects": [
+          {
+            "type": "flag",
+            "id": "d3_ready",
+            "value": true
+          },
+          {
+            "type": "step",
+            "step": "chat:d3"
+          }
+        ],
+        "followUp": "First one is from Priya."
+      }
+    ]
+  },
+  {
+    "id": "priya_rush",
+    "day": 3,
+    "when": {
+      "type": "flag",
+      "id": "d3_ready",
+      "is": true
+    },
+    "channel": "dm-priya",
+    "from": "priya",
+    "messages": [
+      {
+        "text": "hey! just sent you a CR for the billing price lookup. it's tiny. could you approve it quick? I want it in before lunch 🙏",
+        "afterMinutes": 3
+      }
+    ],
+    "replies": [
+      {
+        "id": "properly",
+        "text": "I'll look now, but I'm going to read it properly.",
+        "effects": [
+          {
+            "type": "stat",
+            "path": "trust.priya",
+            "delta": 1
+          }
+        ],
+        "followUp": "fair. that's what I'd say too tbh"
+      },
+      {
+        "id": "sure",
+        "text": "Sure, on it.",
+        "effects": [
+          {
+            "type": "stat",
+            "path": "trust.priya",
+            "delta": 2
+          }
+        ],
+        "followUp": "you're the best"
+      }
+    ]
+  },
+  {
+    "id": "maya_checkin",
+    "day": 3,
+    "when": {
+      "type": "reviewed",
+      "puzzle": "cr-203"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "How are the reviews going? The four questions I ask of every CR: is the logic right, is it tested, will we know if it breaks, and can we roll it back.",
+        "afterMinutes": 3
+      }
+    ],
+    "onDelivered": []
+  },
+  {
+    "id": "sam_here",
+    "day": 3,
+    "when": {
+      "type": "reviewed",
+      "puzzle": "cr-204"
+    },
+    "channel": "team",
+    "from": "sam",
+    "messages": [
+      {
+        "text": "@here could everyone add their RainConf demo ideas to the doc by end of day? 🙏 not urgent but also kind of urgent",
+        "afterMinutes": 0
+      }
+    ]
+  },
+  {
+    "id": "sam_here_reply",
+    "day": 3,
+    "when": {
+      "type": "reviewed",
+      "puzzle": "cr-204"
+    },
+    "channel": "team",
+    "from": "dev",
+    "messages": [
+      {
+        "text": "\"not urgent but also kind of urgent\" is going on a t-shirt",
+        "afterMinutes": 3
+      }
+    ]
+  },
+  {
+    "id": "end_of_queue",
+    "day": 3,
+    "when": {
+      "type": "reviewed",
+      "puzzle": "cr-205"
+    },
+    "channel": "dm-maya",
+    "from": "maya",
+    "messages": [
+      {
+        "text": "That is your review queue cleared, {name}. Three days in and you have shipped a change and reviewed five. Go home: your summary shows what you caught first time and what I had to send back.",
+        "afterMinutes": 2
+      }
+    ]
+  }
+]

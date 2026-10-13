@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Consolas", ui-monospace, monospace;
+}
+
+html {
+  /* Everything is sized in rem, so this one number scales the whole interface. */
+  font-size: 18px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* The desk the laptop sits on. */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 220, 170, 0.18), transparent 60%),
+    repeating-linear-gradient(92deg, #5b4030 0 38px, #523a2b 38px 41px, #5f4433 41px 96px),
+    #4a3426;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Thin scrollbars that suit the dark app windows. */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #475569 transparent;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes typing-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+.typing-dot {
+  animation: typing-dot 1.2s infinite;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink,
+  .typing-dot,
+  .animate-pulse {
+    animation: none;
+  }
+}

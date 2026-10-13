@@ -1,0 +1,32 @@
+{
+  "ticketKey": "QS-101",
+  "repo": "queue-service",
+  "file": {
+    "path": "queue_service/errors.py",
+    "before": [
+      "class QueueError(Exception):",
+      "    \"\"\"Base class for Queue Service errors.\"\"\"",
+      "",
+      "class MessageNotFound(QueueError):",
+      "    def __str__(self):",
+      "        return \"Mesage not found\""
+    ],
+    "after": [
+      "class QueueError(Exception):",
+      "    \"\"\"Base class for Queue Service errors.\"\"\"",
+      "",
+      "class MessageNotFound(QueueError):",
+      "    def __str__(self):",
+      "        return \"Message not found\""
+    ],
+    "changedLine": 6
+  },
+  "workPoints": 12,
+  "suggestedBranch": "feature/QS-101-fix-typo",
+  "suggestedCommitMessage": "Fix typo in message-not-found error",
+  "history": [
+    { "id": "a41c9e2", "message": "Add delivery receipts" },
+    { "id": "7be03d1", "message": "Raise MessageNotFound for unknown ids" },
+    { "id": "c90f5aa", "message": "Tune batch size for delivery worker" }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "name": "Floor 12 · Queue Service",
+  "map": [
+    "######WWWW####WWWW####",
+    "#....................#",
+    "#.DD.DD.DD...#,,,,,,K#",
+    "#............#,,,,,,K#",
+    "#.DD.DD.DD....,,,,,,B#",
+    "#............#,,SS,,,#",
+    "#....................#",
+    "#####.####...####.####",
+    "#MMM....#.....#......#",
+    "#MMM....#.....#..TT.P#",
+    "#.......#.....#......#",
+    "###########E##########"
+  ],
+  "tiles": {
+    "#": { "name": "Wall", "walkable": false, "color": "#0f172a" },
+    ".": { "name": "Carpet", "walkable": true, "color": "#334155" },
+    ",": { "name": "Kitchen floor", "walkable": true, "color": "#3f4a5c" },
+    "W": { "name": "Window", "walkable": false, "color": "#0c4a6e", "glyph": "🌧" },
+    "D": { "name": "Door desk", "walkable": false, "color": "#92400e", "glyph": "🖥" },
+    "K": { "name": "Kitchen counter", "walkable": false, "color": "#475569", "glyph": "☕" },
+    "B": { "name": "Banana stand", "walkable": false, "color": "#475569", "glyph": "🍌" },
+    "S": { "name": "Sofa", "walkable": false, "color": "#6d28d9", "glyph": "🛋" },
+    "M": { "name": "Meeting table", "walkable": false, "color": "#78350f" },
+    "T": { "name": "Ping-pong table", "walkable": false, "color": "#166534", "glyph": "🏓" },
+    "P": { "name": "Plant", "walkable": false, "color": "#334155", "glyph": "🪴" },
+    "E": { "name": "Elevator", "walkable": false, "color": "#a16207", "glyph": "🛗" }
+  },
+  "start": [11, 10],
+  "spots": [
+    {
+      "id": "desk",
+      "kind": "desk",
+      "label": "Your desk",
+      "at": [2, 4],
+      "stand": [2, 5],
+      "lines": ["Your desk is a door on four legs. The company is proud of that."]
+    },
+    {
+      "id": "maya",
+      "kind": "npc",
+      "label": "Maya's desk",
+      "npc": "maya",
+      "at": [5, 2],
+      "stand": [5, 3],
+      "lines": [
+        "Stuck is fine. Stuck and silent for an hour is the only thing I mind.",
+        "When you ask for help, tell me what you tried first. It saves us both ten minutes.",
+        "I still look things up every day. Nobody carries all of this in their head."
+      ]
+    },
+    {
+      "id": "dev",
+      "kind": "npc",
+      "label": "Dev's desk",
+      "npc": "dev",
+      "at": [8, 2],
+      "stand": [8, 3],
+      "lines": [
+        "I was the intern last year. First week I pushed straight to main. The pipeline said no, loudly.",
+        "If the Beta stage is red, it is probably that flaky test again. Probably.",
+        "Ping-pong later? The table is by the elevators."
+      ]
+    },
+    {
+      "id": "priya",
+      "kind": "npc",
+      "label": "Priya's desk",
+      "npc": "priya",
+      "at": [5, 4],
+      "stand": [5, 5],
+      "lines": [
+        "If my CR looks tiny, read it twice. The tiny ones are where I get careless.",
+        "On-call next week. I am already tired.",
+        "Good reviewers ask questions. Great ones ask the question I was hoping nobody would."
+      ]
+    },
+    {
+      "id": "rohan",
+      "kind": "npc",
+      "label": "Rohan's corner",
+      "npc": "rohan",
+      "at": [3, 8],
+      "stand": [4, 8],
+      "lines": [
+        "My job is to decide what matters most this sprint. Your job is to tell me early when it will not fit.",
+        "I do not count hours. I notice what shipped, and what was promised and did not.",
+        "Bring me bad news while it is still small."
+      ]
+    },
+    {
+      "id": "sam",
+      "kind": "npc",
+      "label": "Sam, on the sofa",
+      "npc": "sam",
+      "at": [16, 5],
+      "stand": [16, 4],
+      "lines": [
+        "Half the tickets on your board started as a customer complaining to me.",
+        "I do not tell engineers how to build it. I tell them who is asking and why it hurts.",
+        "\"Not urgent but also kind of urgent\" is a real priority level, thank you."
+      ]
+    },
+    {
+      "id": "coffee",
+      "kind": "coffee",
+      "label": "Coffee machine",
+      "at": [20, 2],
+      "stand": [19, 2],
+      "lines": ["The coffee is free. Lunch is not: frugality is a company value."]
+    },
+    {
+      "id": "bananas",
+      "kind": "look",
+      "label": "Banana stand",
+      "at": [20, 4],
+      "stand": [19, 4],
+      "lines": ["Free bananas for anyone who walks past. The one perk nobody argues about."]
+    },
+    {
+      "id": "pingpong",
+      "kind": "game",
+      "label": "Ping-pong table",
+      "npc": "dev",
+      "at": [17, 9],
+      "stand": [17, 8],
+      "lines": ["Dev is always up for a quick game. First to three points."]
+    },
+    {
+      "id": "window",
+      "kind": "look",
+      "label": "Window",
+      "at": [7, 0],
+      "stand": [7, 1],
+      "lines": ["It is raining. It is usually raining.", "Food trucks are lining up on the street below."]
+    },
+    {
+      "id": "elevator",
+      "kind": "exit",
+      "label": "Elevator",
+      "at": [11, 11],
+      "stand": [11, 10],
+      "lines": []
+    }
+  ]
+}

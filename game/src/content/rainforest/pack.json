@@ -1,0 +1,177 @@
+{
+  "id": "rainforest",
+  "name": "Rainforest Cloud",
+  "version": "0.4.0",
+  "team": "Queue Service",
+  "service": "Queue Service",
+  "realMsPerGameMinute": 1500,
+  "dayStart": "09:00",
+  "dayEnd": "18:00",
+  "sentHomeAt": "20:00",
+  "terminology": {
+    "changeRequest": "CR",
+    "changeRequestLong": "change request",
+    "mainBranch": "main"
+  },
+  "apps": {
+    "chat": {
+      "displayName": "Chirp"
+    },
+    "tickets": {
+      "displayName": "Tickets"
+    },
+    "review": {
+      "displayName": "Code Review"
+    },
+    "git": {
+      "displayName": "Workspace"
+    },
+    "pipeline": {
+      "displayName": "Pipeline"
+    },
+    "glossary": {
+      "displayName": "Handbook"
+    }
+  },
+  "mentor": "maya",
+  "mentorChannel": "dm-maya",
+  "crBot": {
+    "npc": "crbot",
+    "channel": "team"
+  },
+  "lineCategories": [
+    {
+      "id": "secret-in-code",
+      "label": "Secret in the code",
+      "plain": "A password, key or token is written directly in the file, where anyone with the code can read it."
+    },
+    {
+      "id": "no-timeout",
+      "label": "No timeout",
+      "plain": "The code asks another service for something and will wait forever if it never answers."
+    },
+    {
+      "id": "unbounded-retry",
+      "label": "Retries forever",
+      "plain": "When something fails, the code tries again with no limit and no pause."
+    },
+    {
+      "id": "swallowed-error",
+      "label": "Error is hidden",
+      "plain": "Something goes wrong and the code quietly ignores it, so nobody finds out."
+    },
+    {
+      "id": "off-by-one",
+      "label": "Off by one",
+      "plain": "A count or range is wrong by exactly one: an item is skipped or one too many is taken."
+    },
+    {
+      "id": "pii-in-logs",
+      "label": "Personal data in logs",
+      "plain": "Names, emails or message contents are written to logs, where many people can read them."
+    },
+    {
+      "id": "null-handling",
+      "label": "Empty value not handled",
+      "plain": "The code assumes a value is always there. When it is missing or empty, it crashes."
+    },
+    {
+      "id": "logic",
+      "label": "Other logic bug",
+      "plain": "The code does something different from what the description says."
+    }
+  ],
+  "crCategories": [
+    {
+      "id": "missing-tests",
+      "label": "No tests for the new behavior",
+      "plain": "New code was added but nothing checks that it works, or keeps working."
+    },
+    {
+      "id": "missing-description",
+      "label": "No description",
+      "plain": "The author did not say what the change does or why. The reviewer has to guess."
+    },
+    {
+      "id": "too-large",
+      "label": "Too large to review",
+      "plain": "The change does many unrelated things. It should be split into smaller pieces."
+    }
+  ],
+  "reviewChecklist": [
+    {
+      "title": "Is the logic right?",
+      "detail": "Does the code do what the description says, including for empty, missing or unusual input?"
+    },
+    {
+      "title": "Is it tested?",
+      "detail": "Is there a test for the new behavior? Would the test fail if the code were wrong?"
+    },
+    {
+      "title": "Will we know if it breaks?",
+      "detail": "If this fails in production, does anything tell us, or does it fail silently?"
+    },
+    {
+      "title": "Can we roll it back?",
+      "detail": "If we undo this change an hour after shipping, does everything still work?"
+    }
+  ],
+  "whys": {
+    "deadline": {
+      "title": "Why does this have a time on it?",
+      "body": "Other people are waiting on your work. An author cannot merge until you review; a customer is waiting for the fix. Real deadlines are usually counted in days, and this game squeezes them into hours. Missing one is not a disaster. Missing one silently is: say so before the time passes, and the plan can change."
+    },
+    "rework": {
+      "title": "Why did my review come back?",
+      "body": "In your first weeks a senior engineer reads every change behind you. When they find something serious that you missed, the change does not ship: it comes back to you to look again. That is the safety net doing its job. Your first attempt is what counts for your record, and the second look is where the learning happens."
+    },
+    "going-home": {
+      "title": "Why is there no clock-out?",
+      "body": "Engineers here are paid a salary, not by the hour. Nobody stamps a card. You leave when what you promised for today is done, and the board shows it. Some days that is early. Some days it is not."
+    },
+    "ticket": {
+      "title": "Why a ticket for a one-letter fix?",
+      "body": "The ticket is the team's memory. It records who asked, why it matters, who is doing it and what happened. Without it, two people fix the same thing, or nobody does. A year from now, someone can follow the ticket to the exact change and the day it shipped."
+    },
+    "ticket-status": {
+      "title": "Why keep the status up to date?",
+      "body": "Your manager and teammates plan around the board, not around what is in your head. A ticket that says \"In progress\" while nobody touches it hides a problem. A finished ticket left open makes the team look further behind than it is. Moving it takes one click."
+    },
+    "who-assigns": {
+      "title": "Who decides what I work on?",
+      "body": "Usually not your manager, one ticket at a time. Work lands in the team's backlog from three places: the roadmap your manager and product manager agree on, requests from customers and other teams, and alarms from the service itself. Every couple of weeks the team chooses what fits into the next sprint, and engineers take tickets from that list. Your manager sets the priorities. In your first weeks your mentor hands you tickets, because you cannot yet tell which ones are safe to start with. Teams differ; this is one common way."
+    },
+    "sprint": {
+      "title": "What is a sprint?",
+      "body": "A short, fixed stretch of time, usually two weeks, with a goal the team agrees on at the start. The board shows only what the team promised for this sprint. Everything else waits in the backlog, so nobody is quietly pulled in ten directions."
+    },
+    "branch": {
+      "title": "Why not commit straight to main?",
+      "body": "main is what gets deployed to customers. A branch is your own copy of the code where a half-finished idea cannot hurt anyone. When it is ready, a teammate reviews it, and only then does it join main."
+    },
+    "commit-message": {
+      "title": "Why does the commit message matter?",
+      "body": "Months from now, someone debugging at 3 AM will read the history to learn why a line changed. \"fix\" tells them nothing. One clear sentence about what changed and why saves them an hour."
+    },
+    "review": {
+      "title": "Why must someone else review my code?",
+      "body": "Authors read what they meant to write, not what they wrote. A second person catches the bug you cannot see, and now two people understand the code instead of one. At this company the pipeline refuses any change that has not been approved."
+    },
+    "pipeline": {
+      "title": "Why does my change wait in stages?",
+      "body": "Each stage is a chance to catch a problem before more customers see it: tests first, then a production-like copy, then a single host taking a little real traffic. Waiting (\"baking\") gives slow problems time to show up. If an alarm fires, the pipeline undoes the change by itself."
+    },
+    "small-cr": {
+      "title": "Why keep changes small?",
+      "body": "A reviewer can truly read 40 lines. Nobody truly reads 800. Small changes get better reviews, ship sooner, and are easy to undo when something goes wrong."
+    },
+    "flow": {
+      "title": "What is Flow?",
+      "body": "Flow is how deeply you are concentrating. It builds slowly while you stay on one task and makes your own work go faster. Every switch to Chat costs some of it. Real engineers guard it the same way."
+    },
+    "verdict": {
+      "title": "Approve or request changes?",
+      "body": "Approve means \"I would be comfortable being paged for this\". If you found something that must be fixed before it ships, request changes. Small style remarks (\"nits\") are not a reason to block."
+    }
+  }
+}
